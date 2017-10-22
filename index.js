@@ -2,8 +2,11 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
 app.get('/', function(req, res){
-    res.sendFile('public/index.html', {root : __dirname});
+    res.render('index');
 });
 
 io.on('connection', function(socket){
